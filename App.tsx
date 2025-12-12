@@ -1,7 +1,7 @@
 import React from 'react';
 import Hero from './components/Hero';
 import Features from './components/Features';
-import Pricing from './components/Pricing';
+import OrderSection from './components/OrderSection';
 import ProductShowcase from './components/ProductShowcase';
 import HowItWorks from './components/HowItWorks';
 import DeliveryAndWarranty from './components/DeliveryAndWarranty';
@@ -16,7 +16,10 @@ const App: React.FC = () => {
           <div className="font-bold text-xl tracking-tight text-slate-900">
             Nappes<span className="text-blue-600">PVC</span>
           </div>
-          <button className="hidden md:block bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-800 transition-colors">
+          <button 
+            onClick={() => document.getElementById('order-section')?.scrollIntoView({ behavior: 'smooth' })}
+            className="hidden md:block bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-slate-800 transition-colors"
+          >
             Commander
           </button>
         </div>
@@ -25,7 +28,8 @@ const App: React.FC = () => {
       <main>
         <Hero />
         <Features />
-        <Pricing />
+        {/* New Order Calculator replaces static Pricing */}
+        <OrderSection />
         <ProductShowcase />
         <HowItWorks />
         <DeliveryAndWarranty />
