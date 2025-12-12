@@ -67,13 +67,13 @@ const OrderSection: React.FC = () => {
   const isSymmetric = shape === 'circle' || shape === 'square' || shape === 'octagon';
 
   return (
-    <section className="py-20 bg-slate-50" id="order-section">
+    <section className="py-12 lg:py-20 bg-slate-50" id="order-section">
       <div className="container mx-auto px-4 lg:px-6">
-        <div className="flex flex-col lg:flex-row gap-12">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12">
           
           {/* LEFT COLUMN: Info & Selling Points */}
           <div className="w-full lg:w-5/12">
-            <h2 className="text-3xl font-extrabold text-slate-900 mb-6">Best-seller</h2>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900 mb-6">Best-seller</h2>
             <p className="text-lg font-medium text-slate-700 mb-6">Livraison gratuite partout au Maroc</p>
             
             <ul className="space-y-4 mb-8">
@@ -109,12 +109,12 @@ const OrderSection: React.FC = () => {
           </div>
 
           {/* RIGHT COLUMN: Calculator & Form */}
-          <div className="w-full lg:w-7/12 bg-white p-6 md:p-8 rounded-3xl shadow-xl border border-slate-200">
+          <div className="w-full lg:w-7/12 bg-white p-5 md:p-8 rounded-3xl shadow-xl border border-slate-200">
             
             {/* Shape Selector */}
             <div className="mb-8">
-              <label className="block text-slate-900 font-bold mb-4">Forme de votre table :</label>
-              <div className="flex flex-wrap gap-4">
+              <label className="block text-slate-900 font-bold mb-4 text-base">Forme de votre table :</label>
+              <div className="flex flex-wrap gap-3 md:gap-4">
                 {[
                   { id: 'circle', comp: CircleIcon },
                   { id: 'octagon', comp: OctagonIcon },
@@ -125,7 +125,7 @@ const OrderSection: React.FC = () => {
                   <button
                     key={item.id}
                     onClick={() => handleShapeChange(item.id as ShapeType)}
-                    className={`w-14 h-14 rounded-lg border-2 flex items-center justify-center transition-all ${
+                    className={`w-12 h-12 md:w-14 md:h-14 rounded-lg border-2 flex items-center justify-center transition-all ${
                       shape === item.id 
                         ? 'border-green-500 bg-green-50' 
                         : 'border-slate-200 hover:border-slate-300'
@@ -138,23 +138,23 @@ const OrderSection: React.FC = () => {
             </div>
 
             {/* Calculator Box */}
-            <div className="bg-slate-50 p-6 rounded-2xl mb-8 border border-slate-100">
+            <div className="bg-slate-50 p-5 md:p-6 rounded-2xl mb-8 border border-slate-100">
               {/* Thickness */}
               <div className="mb-6">
-                <label className="block text-slate-900 font-bold mb-3">Épaisseur :</label>
-                <div className="flex gap-4">
+                <label className="block text-slate-900 font-bold mb-3 text-base">Épaisseur :</label>
+                <div className="flex gap-3 md:gap-4 w-full">
                   <button 
                     onClick={() => setThickness('1.2mm')}
-                    className={`px-6 py-2 rounded-md font-bold text-sm border-2 transition-all ${
-                      thickness === '1.2mm' ? 'bg-green-500 text-white border-green-500' : 'bg-white text-slate-600 border-slate-300'
+                    className={`flex-1 py-3 px-2 md:px-6 rounded-md font-bold text-sm border-2 transition-all shadow-sm ${
+                      thickness === '1.2mm' ? 'bg-green-500 text-white border-green-500' : 'bg-white text-slate-600 border-slate-300 hover:border-green-400'
                     }`}
                   >
                     1.2 MM
                   </button>
                   <button 
                     onClick={() => setThickness('2mm')}
-                    className={`px-6 py-2 rounded-md font-bold text-sm border-2 transition-all ${
-                      thickness === '2mm' ? 'bg-green-500 text-white border-green-500' : 'bg-white text-slate-600 border-slate-300'
+                    className={`flex-1 py-3 px-2 md:px-6 rounded-md font-bold text-sm border-2 transition-all shadow-sm ${
+                      thickness === '2mm' ? 'bg-green-500 text-white border-green-500' : 'bg-white text-slate-600 border-slate-300 hover:border-green-400'
                     }`}
                   >
                     2 MM
@@ -164,11 +164,11 @@ const OrderSection: React.FC = () => {
 
               {/* Dimensions Input */}
               <div className="mb-6">
-                <label className="block text-slate-900 font-bold mb-3">Dimensions de votre table (en cm) :</label>
-                <div className="grid grid-cols-2 gap-4">
+                <label className="block text-slate-900 font-bold mb-3 text-base">Dimensions (en cm) :</label>
+                <div className="grid grid-cols-2 gap-3 md:gap-4">
                   <div>
                     <span className="text-xs text-slate-500 font-semibold mb-1 block">
-                      {isSymmetric ? 'Diamètre / Côté (Longueur)' : 'Longueur'}
+                      {isSymmetric ? 'Diamètre / Côté' : 'Longueur'}
                     </span>
                     <input 
                       type="number" 
@@ -179,7 +179,7 @@ const OrderSection: React.FC = () => {
                         if (isSymmetric) setWidth(isNaN(val) ? '' : val);
                       }}
                       placeholder="ex: 200"
-                      className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                      className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none text-base bg-white"
                     />
                   </div>
                   <div className={isSymmetric ? 'opacity-50 pointer-events-none' : ''}>
@@ -195,7 +195,7 @@ const OrderSection: React.FC = () => {
                       }}
                       placeholder="ex: 90"
                       readOnly={isSymmetric}
-                      className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                      className="w-full p-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none text-base bg-white"
                     />
                   </div>
                 </div>
@@ -204,10 +204,10 @@ const OrderSection: React.FC = () => {
               {/* Price Result */}
               <div className="pt-4 border-t border-slate-200">
                 <div className="flex justify-between items-center">
-                  <span className="text-slate-600 font-medium">Prix Total Estimé :</span>
+                  <span className="text-slate-600 font-medium text-sm md:text-base">Prix Total Estimé :</span>
                   <div className="text-right">
                     {price > 0 ? (
-                      <span className="text-3xl font-extrabold text-green-600">{price} DHs</span>
+                      <span className="text-2xl md:text-3xl font-extrabold text-green-600">{price} DHs</span>
                     ) : (
                       <span className="text-sm text-slate-400 italic">Saisissez vos dimensions</span>
                     )}
@@ -222,24 +222,24 @@ const OrderSection: React.FC = () => {
               <div className="space-y-4">
                 <div>
                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Email : *</label>
-                   <input type="email" className="w-full p-3 border-b-2 border-slate-200 bg-slate-50 focus:border-green-500 outline-none transition-colors" placeholder="votre@email.com" />
+                   <input type="email" className="w-full p-3 border-b-2 border-slate-200 bg-slate-50 focus:border-green-500 outline-none transition-colors text-base" placeholder="votre@email.com" />
                 </div>
                 <div>
                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Nom complet : *</label>
-                   <input type="text" className="w-full p-3 border-b-2 border-slate-200 bg-slate-50 focus:border-green-500 outline-none transition-colors" placeholder="Votre nom" />
+                   <input type="text" className="w-full p-3 border-b-2 border-slate-200 bg-slate-50 focus:border-green-500 outline-none transition-colors text-base" placeholder="Votre nom" />
                 </div>
                 <div>
                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Téléphone : *</label>
-                   <input type="tel" className="w-full p-3 border-b-2 border-slate-200 bg-slate-50 focus:border-green-500 outline-none transition-colors" placeholder="06..." />
+                   <input type="tel" className="w-full p-3 border-b-2 border-slate-200 bg-slate-50 focus:border-green-500 outline-none transition-colors text-base" placeholder="06..." />
                 </div>
                  <div>
                    <label className="block text-xs font-bold text-slate-500 uppercase mb-1">Adresse complète : *</label>
-                   <textarea className="w-full p-3 border-b-2 border-slate-200 bg-slate-50 focus:border-green-500 outline-none transition-colors resize-none" rows={2} placeholder="Votre adresse de livraison"></textarea>
+                   <textarea className="w-full p-3 border-b-2 border-slate-200 bg-slate-50 focus:border-green-500 outline-none transition-colors resize-none text-base" rows={2} placeholder="Votre adresse de livraison"></textarea>
                 </div>
               </div>
 
               <div className="mt-8">
-                <button className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-green-200 transition-all transform hover:-translate-y-1 text-lg">
+                <button className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg shadow-green-200 transition-all transform hover:-translate-y-1 text-lg active:scale-95">
                   Commander Maintenant
                 </button>
               </div>
@@ -247,11 +247,10 @@ const OrderSection: React.FC = () => {
 
             {/* Support Box */}
             <div className="mt-8 bg-slate-50 p-4 rounded-xl text-center border border-slate-100">
-               <p className="font-bold text-slate-900 mb-1">Besoin d'aide pour passer votre commande ?</p>
-               <p className="text-sm text-slate-600 mb-2">Nous sommes là pour vous assister !</p>
-               <a href="tel:+212663310000" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:underline">
-                 <Phone className="w-4 h-4" />
-                 Appelez-nous au +212 600 000 000
+               <p className="font-bold text-slate-900 mb-1">Besoin d'aide ?</p>
+               <a href="tel:+212663310000" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:underline text-lg">
+                 <Phone className="w-5 h-5" />
+                 +212 600 000 000
                </a>
             </div>
 
